@@ -20,6 +20,7 @@ import {
   Wifi,
   Zap,
 } from "lucide-react";
+import { faqItems } from "./seo-content";
 
 const contactEndpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) ?? "/api/contact";
 
@@ -126,6 +127,7 @@ function App() {
         <nav aria-label="Navigation principale">
           <a href="#fonctionnement">Comment ça marche</a>
           <a href="#compatibilite">Compatibilité</a>
+          <a href="#questions">Questions</a>
           <a href="#tarifs">Tarifs</a>
         </nav>
         <a className="button button-small button-dark" href="#contact">
@@ -136,11 +138,11 @@ function App() {
       <section className="hero-scroll" id="top" aria-labelledby="hero-title" ref={heroRef}>
         <div className="hero">
           <div className="hero-copy">
-            <p className="eyebrow"><span /> Votre portail vient de devenir intelligent.</p>
-            <h1 id="hero-title">Votre télécommande.<br /><em>Dans votre téléphone.</em></h1>
+            <p className="eyebrow"><span /> Ouvrez votre portail avec votre téléphone.</p>
+            <h1 id="hero-title">Le boîtier universel.<br /><em>Pour votre portail.</em></h1>
             <p className="hero-intro">
-              Biip appuie physiquement sur votre télécommande de portail à votre place. Aucun câblage, aucun changement
-              d’installation : vous ouvrez désormais depuis votre téléphone.
+              Biip transforme votre télécommande de portail en ouverture depuis votre téléphone. Le boîtier appuie
+              physiquement à votre place : aucune copie de fréquence, aucun câblage et aucun changement d’installation.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">
@@ -227,6 +229,25 @@ function App() {
         <PhoneDemo />
       </section>
 
+      <section className="section faq-section" id="questions" aria-labelledby="faq-title">
+        <div className="section-heading centered">
+          <p className="kicker">Questions fréquentes</p>
+          <h2 id="faq-title">Tout savoir sur le portail universel Biip.</h2>
+          <p>
+            Compatibilité, installation et partage des accès : les réponses essentielles avant d’ouvrir votre portail
+            depuis votre téléphone.
+          </p>
+        </div>
+        <div className="faq-list">
+          {faqItems.map((item) => (
+            <details key={item.question}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <section className="section pricing-section" id="tarifs" aria-labelledby="pricing-title">
         <div className="section-heading centered">
           <p className="kicker">Un prix simple. Pas de surprise.</p>
@@ -285,7 +306,7 @@ function App() {
 
       <footer>
         <a className="brand brand-light" href="#top"><Logo /> <span>biip</span></a>
-        <p>La façon la plus simple d’ouvrir votre portail.</p>
+        <p>Biip, le boîtier universel pour ouvrir votre portail avec votre téléphone.</p>
         <p>© {new Date().getFullYear()} Biip</p>
       </footer>
     </main>

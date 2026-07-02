@@ -1,8 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv, type HtmlTagDescriptor, type Plugin } from "vite";
+import { faqItems, seoDescription as description, seoTitle as title } from "./src/seo-content";
 
-const title = "Biip — Ouvrez votre portail avec votre téléphone";
-const description = "Biip transforme votre télécommande de portail en ouverture à distance depuis votre téléphone, sans travaux et sans changer d'installation.";
 
 function normalizeSiteUrl(rawUrl?: string) {
   if (!rawUrl) return "https://biip.fr";
@@ -15,15 +14,39 @@ function seoPlugin(siteUrl: string): Plugin {
   const imageUrl = `${siteUrl}/biip-product.png`;
   const data = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Biip",
-    description,
-    url: canonicalUrl,
-    image: imageUrl,
-    brand: { "@type": "Brand", name: "Biip" },
-    offers: [
-      { "@type": "Offer", priceCurrency: "EUR", price: "5", description: "Abonnement mensuel" },
-      { "@type": "Offer", priceCurrency: "EUR", price: "200", description: "Accès à vie" },
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${canonicalUrl}#website`,
+        name: "Biip",
+        alternateName: ["Bip portail", "Biiip"],
+        url: canonicalUrl,
+        inLanguage: "fr-FR",
+      },
+      {
+        "@type": "Product",
+        "@id": `${canonicalUrl}#product`,
+        name: "Biip, boîtier universel pour portail",
+        alternateName: ["Bip portail universel", "Biiip portail"],
+        category: "Boîtier connecté pour portail",
+        description,
+        url: canonicalUrl,
+        image: imageUrl,
+        brand: { "@type": "Brand", name: "Biip" },
+        offers: [
+          { "@type": "Offer", priceCurrency: "EUR", price: "5", description: "Abonnement mensuel" },
+          { "@type": "Offer", priceCurrency: "EUR", price: "200", description: "Accès à vie" },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${canonicalUrl}#faq`,
+        mainEntity: faqItems.map(({ question, answer }) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
     ],
   };
   const tags: HtmlTagDescriptor[] = [
