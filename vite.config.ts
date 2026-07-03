@@ -4,9 +4,9 @@ import { faqItems, seoDescription as description, seoTitle as title } from "./sr
 
 
 function normalizeSiteUrl(rawUrl?: string) {
-  if (!rawUrl) return "https://biip.fr";
+  if (!rawUrl) return "https://portailuniversel.fr";
   try { const url = new URL(rawUrl); url.pathname = "/"; url.search = ""; url.hash = ""; return url.toString().replace(/\/$/, ""); }
-  catch { return "https://biip.fr"; }
+  catch { return "https://portailuniversel.fr"; }
 }
 
 function seoPlugin(siteUrl: string): Plugin {

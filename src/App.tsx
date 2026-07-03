@@ -41,7 +41,7 @@ const steps = [
     number: "03",
     icon: Smartphone,
     title: "Ouvrez avec le téléphone",
-    text: "Créez votre compte sur biip.fr/sign-up et partagez l’accès avec tous les téléphones utiles.",
+    text: "Créez votre compte sur portailuniversel.fr/sign-up et partagez l’accès avec tous les téléphones utiles.",
   },
 ];
 

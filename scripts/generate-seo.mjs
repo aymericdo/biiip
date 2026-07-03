@@ -2,9 +2,9 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 function normalizeSiteUrl(rawUrl) {
-  if (!rawUrl) return "https://biip.fr";
+  if (!rawUrl) return "https://portailuniversel.fr";
   try { const url = new URL(rawUrl); url.pathname = "/"; url.search = ""; url.hash = ""; return url.toString().replace(/\/$/, ""); }
-  catch { return "https://biip.fr"; }
+  catch { return "https://portailuniversel.fr"; }
 }
 
 const siteUrl = normalizeSiteUrl(process.env.VITE_SITE_URL || process.env.SITE_URL || process.env.URL);
